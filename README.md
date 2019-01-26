@@ -21,10 +21,14 @@ cambio_euro(url)
 cambio_libra(url)
 ````
   Passando uma url, em string, de um arquivo JSON ou valor None, é possível saber quanto custa a Libra esterlina, em reais.
+````sh
+exportar_csv(dollar, euro, libra)
+````
+  Passando valores de dollar, euro e libra, é possível realizar a exportação para uma tabela CSV.
 
 # Desenvoveldor
 Mariana Viana
 -
  
 # License
-**Free Software, Hell Yeah!**
+**Free Software, YAY!**

@@ -1,11 +1,13 @@
 import requests
 import json
+import pandas as pd
 
 def main():
     print("Estabelecendo conexão com o link...")
-    cambio_dollar(None)
-    cambio_euro(None)
-    cambio_libra(None)
+    dollar = cambio_dollar(None)
+    euro = cambio_euro(None)
+    libra = cambio_libra(None)
+    exportar_csv(dollar, euro, libra)
 
 
 def cambio_dollar(url):
@@ -18,7 +20,10 @@ def cambio_dollar(url):
         taxa_usd = dados['rates']['USD']
         taxa_brl = dados['rates']['BRL']
         real = taxa_brl/taxa_usd
-        print("O valor do Dollar atual é: %.2f reais" % real)
+        real = round(real, 2)
+        return real #enviar valor para onde a função foi chamada
+    else:
+        print("Link defeituoso")
 
 def cambio_euro(url):
     if url is None:
@@ -30,7 +35,10 @@ def cambio_euro(url):
         taxa_brl = dados['rates']['BRL']
         taxa_eur = dados['rates']['EUR']
         real2 = taxa_brl / taxa_eur
-        print("O valor do Euro atual é: %.2f reais" % real2)
+        real2 = round(real2, 2)
+        return real2
+    else:
+        print("Link defeituoso")
 
 def cambio_libra(url):
     if url is None:
@@ -42,7 +50,18 @@ def cambio_libra(url):
         taxa_brl = dados['rates']['BRL']
         taxa_gbp = dados['rates']['GBP']
         real3 = taxa_brl / taxa_gbp
-        print("O valor da Libra atual é: %.2f reais" % real3)
+        real3 = round(real3, 2)
+        return real3
+    else:
+        print("Link defeituoso")
+
+def exportar_csv(dollar, euro, libra):
+    linha = {'Dollar - USD': [dollar], 'Euro - EUR': [euro], 'Libra - GBP': [libra]}
+    frame = pd.DataFrame(linha, columns = ['Dollar - USD', 'Euro - EUR', 'Libra - GBP'])
+    frame.to_csv('moeda.csv')
+    print('Dados salvos na tabela.')
+
+
 
 #execulta o main
 if __name__ == '__main__':
