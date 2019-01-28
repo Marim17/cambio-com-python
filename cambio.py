@@ -4,15 +4,13 @@ import pandas as pd
 
 def main():
     print("Estabelecendo conexão com o link...")
-    dollar = cambio_dollar(None)
-    euro = cambio_euro(None)
-    libra = cambio_libra(None)
+    dollar = cambio_dollar()
+    euro = cambio_euro()
+    libra = cambio_libra()
     exportar_csv(dollar, euro, libra)
 
 
-def cambio_dollar(url):
-    if url is None:
-        url = "http://data.fixer.io/api/latest?access_key=822e4f212a9a468acfcab74eda3af982&format=1"
+def cambio_dollar(url = "http://data.fixer.io/api/latest?access_key=822e4f212a9a468acfcab74eda3af982&format=1"):
     response = requests.get(url)
     if response.status_code == 200:
         print("Conseguiu se conectar...")
@@ -25,9 +23,7 @@ def cambio_dollar(url):
     else:
         print("Link defeituoso")
 
-def cambio_euro(url):
-    if url is None:
-        url = "http://data.fixer.io/api/latest?access_key=822e4f212a9a468acfcab74eda3af982&format=1"
+def cambio_euro(url = "http://data.fixer.io/api/latest?access_key=822e4f212a9a468acfcab74eda3af982&format=1"):
     response = requests.get(url)
     if response.status_code == 200:
         print("Conseguiu se conectar...")
@@ -40,9 +36,7 @@ def cambio_euro(url):
     else:
         print("Link defeituoso")
 
-def cambio_libra(url):
-    if url is None:
-        url = "http://data.fixer.io/api/latest?access_key=822e4f212a9a468acfcab74eda3af982&format=1"
+def cambio_libra(url = "http://data.fixer.io/api/latest?access_key=822e4f212a9a468acfcab74eda3af982&format=1"):
     response = requests.get(url)
     if response.status_code == 200:
         print("Conseguiu se conectar...")
